@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <bean id="connectionFactory" class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">
+              <constructor-arg index="0" value="192.168.1.106"/>
+              <property name="username" value="admin" />
+              <property name="password" value="1074007543x" />
+       </bean>
+
+       <bean id="rabbitTemplate" class="org.springframework.amqp.rabbit.core.RabbitTemplate">
+              <constructor-arg index="0">
+                     <ref bean="connectionFactory"/>
+              </constructor-arg>
+              <property name="routingKey" value="pet-message-queue" />
+              <property name="queue" value="pet-message-queue" />
+       </bean>
+</beans>
